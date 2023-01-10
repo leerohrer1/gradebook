@@ -8,4 +8,4 @@ book.AddGrade(10.3);
 book.AddGrade(6.11);
 book.AddGrade(4.1);
 book.AddGrade(56.1);
-book.showStats();
+book.getStats();

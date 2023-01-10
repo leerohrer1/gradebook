@@ -1,57 +1,38 @@
 namespace Gradebook
 {
-    class Book
-    { 
+    public class Book
+    {
         private List<double> grades;
         private string name;
 
         public Book(string name)
         {
-            grades = new List<double>(); 
+            grades = new List<double>();
             this.name = name;
         }
         public void AddGrade(double grade)
         {
             grades.Add(grade);
         }
-
-        public double FindAverage()
+        
+        public Statistics getStats()
         {
-            Console.WriteLine($"The average for {name} is {grades.Average()}.");
-            return grades.Average();
-        }
+            Statistics result = new Statistics();
 
-        public double FindMax()
-        {
-            double highest = double.MinValue;
+            result.Average = 0.0;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
 
-            foreach(double num in grades)
+            foreach (var num in grades)
             {
-                highest = Math.Max(num, highest);
+                result.Low = Math.Min(num, result.Low);
+                result.High = Math.Max(num, result.High);
+                result.Average += num;
             }
 
-            Console.WriteLine($"The highest grade for {name} is {highest}.");
-            return highest;
-        }
+            result.Average /= grades.Count;
 
-        public double FindMin()
-        {
-            double lowest = double.MaxValue;
-
-            foreach(double num in grades)
-            {
-                lowest = Math.Min(num, lowest);
-            }
-
-            Console.WriteLine($"The lowest grade for {name} is {lowest}.");
-            return lowest;
-        }
-
-        public void showStats() 
-        {
-            FindMin();
-            FindMax();
-            FindAverage();
+            return result;
         }
     }
 }
