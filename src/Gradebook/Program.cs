@@ -1,22 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Collections.Generic;
+using Gradebook;
 
-if (args.Length > 0)
-{
-    Console.WriteLine($"Hello, {args[0]}!");
-}
-else 
-{
-    Console.WriteLine($"Hello, teacher!");
-}
-
-List<double> grades = new List<double>() { 12.3, 45.6, 78.9 };
-grades.Add(98.7);
-
-double result = 0;
-foreach(double grade in grades)
-{
-    result += grade;
-}
-result /= grades.Count;
-Console.WriteLine($"The average grade is {result}.");
+var book = new Book("Lee's Grade Book");
+book.AddGrade(12.7);
+book.AddGrade(10.3);
+book.AddGrade(6.11);
+book.AddGrade(4.1);
+book.AddGrade(56.1);
+book.showStats();
